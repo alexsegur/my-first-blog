@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Alex's blog</title>
-</head>
-<body>
-    <div>
-        <h1><a href="/">Alex's Blog</a></h1>
+{% extends 'blog/base.html' %}
+{% block content %}
 
-        <div>
-            {% for post in posts %}
-                <div>
-                    <h3><a href="">{{ post.title }}</a></h3>
-                    <p>Publicado: {{ post.published_date }}</p>
-                    <p>{{ post.text|linebreaksbr }}</p>
-                </div>
-            {% endfor %}
-        </div>
+    <div>
+        {% for post in posts %}
+            <div>
+                <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                <p>Publicado: {{ post.published_date }}</p>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}
